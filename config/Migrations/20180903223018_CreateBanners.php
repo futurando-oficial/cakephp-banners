@@ -38,7 +38,7 @@ class CreateBanners extends AbstractMigration
             'limit' => 255,
             'null' => true,
         ]);
-        $table->addColumn('order', 'integer', [
+        $table->addColumn('sort', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => false,

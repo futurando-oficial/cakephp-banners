@@ -20,7 +20,7 @@
             echo $this->Form->control('file');
             echo $this->Form->control('file_mobile');
             echo $this->Form->control('link');
-            echo $this->Form->control('order');
+            echo $this->Form->control('sort');
             echo $this->Form->control('status');
         ?>
     </fieldset>

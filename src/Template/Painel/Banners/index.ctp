@@ -21,7 +21,7 @@
                 <th scope="col"><?= $this->Paginator->sort('file') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('file_mobile') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('link') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('order') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('sort') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
@@ -37,7 +37,7 @@
                 <td><?= h($banner->file) ?></td>
                 <td><?= h($banner->file_mobile) ?></td>
                 <td><?= h($banner->link) ?></td>
-                <td><?= $this->Number->format($banner->order) ?></td>
+                <td><?= $this->Number->format($banner->sort) ?></td>
                 <td><?= $this->Number->format($banner->status) ?></td>
                 <td><?= h($banner->created) ?></td>
                 <td><?= h($banner->modified) ?></td>
