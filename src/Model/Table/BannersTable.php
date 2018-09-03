@@ -81,9 +81,9 @@ class BannersTable extends Table {
                 ->allowEmpty('link');
 
         $validator
-                ->integer('order')
-                ->requirePresence('order', 'create')
-                ->notEmpty('order');
+                ->integer('sort')
+                ->requirePresence('sort', 'create')
+                ->notEmpty('sort');
 
         $validator
                 ->integer('status')

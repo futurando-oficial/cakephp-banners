@@ -41,8 +41,8 @@
             <td><?= $this->Number->format($banner->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Order') ?></th>
-            <td><?= $this->Number->format($banner->order) ?></td>
+            <th scope="row"><?= __('sort') ?></th>
+            <td><?= $this->Number->format($banner->sort) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Status') ?></th>
