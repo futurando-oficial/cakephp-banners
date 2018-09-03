@@ -28,7 +28,8 @@ class BannersSeed extends AbstractSeed
             'order'=>'1',
             'status'=>'1',
             'created'=> date('Y-m-d H:i:s'),
-            'modified'=> date('Y-m-d H:i:s')
+            'modified'=> date('Y-m-d H:i:s'),
+            'type'=>'image'
         ];
 
         $data[] = [
@@ -41,7 +42,8 @@ class BannersSeed extends AbstractSeed
             'order'=>'2',
             'status'=>'1',
             'created'=> date('Y-m-d H:i:s'),
-            'modified'=> date('Y-m-d H:i:s')
+            'modified'=> date('Y-m-d H:i:s'),
+            'type'=>'vimeo'
         ];
 
         $data[] = [
@@ -54,7 +56,8 @@ class BannersSeed extends AbstractSeed
             'order'=>'3',
             'status'=>'1',
             'created'=> date('Y-m-d H:i:s'),
-            'modified'=> date('Y-m-d H:i:s')
+            'modified'=> date('Y-m-d H:i:s'),
+            'type'=>'youtube'
         ];
 
         $table = $this->table('banners');

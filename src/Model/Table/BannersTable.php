@@ -1,4 +1,5 @@
 <?php
+
 namespace Banners\Model\Table;
 
 use Cake\ORM\Query;
@@ -20,8 +21,11 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class BannersTable extends Table
-{
+class BannersTable extends Table {
+
+    const STATUS_INATIVO = 0;
+    const STATUS_ATIVO = 1;
+    const STATUS_DELETADO = 2;
 
     /**
      * Initialize method
@@ -29,8 +33,7 @@ class BannersTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
-    {
+    public function initialize(array $config) {
         parent::initialize($config);
 
         $this->setTable('banners');
@@ -46,48 +49,48 @@ class BannersTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
+    public function validationDefault(Validator $validator) {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+                ->integer('id')
+                ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 255)
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
+                ->scalar('name')
+                ->maxLength('name', 255)
+                ->requirePresence('name', 'create')
+                ->notEmpty('name');
 
         $validator
-            ->scalar('alt')
-            ->maxLength('alt', 255)
-            ->allowEmpty('alt');
+                ->scalar('alt')
+                ->maxLength('alt', 255)
+                ->allowEmpty('alt');
 
         $validator
-            ->scalar('file')
-            ->maxLength('file', 255)
-            ->allowEmpty('file');
+                ->scalar('file')
+                ->maxLength('file', 255)
+                ->allowEmpty('file');
 
         $validator
-            ->scalar('file_mobile')
-            ->maxLength('file_mobile', 255)
-            ->allowEmpty('file_mobile');
+                ->scalar('file_mobile')
+                ->maxLength('file_mobile', 255)
+                ->allowEmpty('file_mobile');
 
         $validator
-            ->scalar('link')
-            ->maxLength('link', 255)
-            ->allowEmpty('link');
+                ->scalar('link')
+                ->maxLength('link', 255)
+                ->allowEmpty('link');
 
         $validator
-            ->integer('order')
-            ->requirePresence('order', 'create')
-            ->notEmpty('order');
+                ->integer('order')
+                ->requirePresence('order', 'create')
+                ->notEmpty('order');
 
         $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+                ->integer('status')
+                ->requirePresence('status', 'create')
+                ->notEmpty('status');
 
         return $validator;
     }
+
 }

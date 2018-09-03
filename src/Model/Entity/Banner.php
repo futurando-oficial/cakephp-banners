@@ -1,4 +1,5 @@
 <?php
+
 namespace Banners\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -17,8 +18,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */
-class Banner extends Entity
-{
+class Banner extends Entity {
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -36,8 +36,9 @@ class Banner extends Entity
         'file_mobile' => true,
         'link' => true,
         'order' => true,
-        'status' => true,
+        'status' => false,
         'created' => true,
         'modified' => true
     ];
+
 }
