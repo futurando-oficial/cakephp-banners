@@ -17,17 +17,17 @@
     </ul>
 </nav>
 <div class="banners form large-9 medium-8 columns content">
-    <?= $this->Form->create($banner) ?>
+    <?= $this->Form->create($banner,['type'=>'file']) ?>
     <fieldset>
         <legend><?= __('Edit Banner') ?></legend>
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('alt');
-            echo $this->Form->control('file');
-            echo $this->Form->control('file_mobile');
+            echo $this->Form->control('file',['type'=>'file']);
+            echo $this->Form->control('file_mobile',['type'=>'file']);
             echo $this->Form->control('link');
-            echo $this->Form->control('order');
-            echo $this->Form->control('status');
+            echo $this->Form->control('sort');
+            echo $this->Form->control('status',['options'=>['1'=>'Ativo','0'=>'Inativo']]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
