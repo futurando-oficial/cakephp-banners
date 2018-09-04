@@ -35,7 +35,7 @@ class Banner extends Entity {
         'file' => true,
         'file_mobile' => true,
         'link' => true,
-        'order' => true,
+        'sort' => true,
         'status' => true,
         'created' => true,
         'modified' => true
