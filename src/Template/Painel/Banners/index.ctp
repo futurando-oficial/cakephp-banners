@@ -4,6 +4,7 @@
  * @var \Cake\Datasource\EntityInterface[]|\Cake\Collection\CollectionInterface $banners
  */
 ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -12,7 +13,7 @@
 </nav>
 <div class="banners index large-9 medium-8 columns content">
     <h3><?= __('Banners') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0" id="sort">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -27,7 +28,7 @@
                 <tr>
                     <td><?= $this->Number->format($banner->id) ?></td>
                     <td><?= h($banner->name) ?></td>
-                    <td><?= $this->Number->format($banner->sort) ?></td>
+                    <td class="index" data-id="<?= $banner->id ?>"><?= $this->Number->format($banner->sort) ?></td>
                     <?php $status = [1 => 'ativo', 2 => 'inativo']; ?>
                     <td><?= $status[$banner->status] ?></td>
                     <td class="actions">
@@ -50,31 +51,39 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-    $(function () {
-        wireReorderList();
-    });
 
-    function wireReorderList() {
-        $("#reorderExampleItems").sortable();
-        $("#reorderExampleItems").disableSelection();
-    }
 
-    function saveOrderClick() {
-        // ----- Retrieve the li items inside our sortable list
-        var items = $("#reorderExampleItems li");
+    var fixHelperModified = function (e, tr) {
+        var $originals = tr.children();
+        var $helper = tr.clone();
+        $helper.children().each(function (index) {
+            $(this).width($originals.eq(index).width())
+        });
+        return $helper;
+    },
+            updateIndex = function (e, ui) {
+                $('td.index', ui.item.parent()).each(function (i) {
+                    $(this).html(i + 1);
+                    $.ajax({
+                        url: '<?= $this->Url->build(['controller' => 'Banners', 'action' => 'editSort', 'plugin' => 'Banners', 'prefix' => 'painel']); ?>/' + $(this).data('id'),
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            "_csrfToken": '<?= $this->request->getParam('_csrfToken'); ?>',
+                            'index':i + 1
+                        }
+                    });
 
-        var linkIDs = [items.size()];
-        var index = 0;
 
-        // ----- Iterate through each li, extracting the ID embedded as an attribute
-        items.each(
-                function (intIndex) {
-                    linkIDs[index] = $(this).attr("ExampleItemID");
-                    index++;
                 });
+            };
 
-        $get("<%=txtExampleItemsOrder.ClientID %>").value = linkIDs.join(",");
-    }
+    $("#sort tbody").sortable({
+        helper: fixHelperModified,
+        stop: updateIndex
+    }).disableSelection();
 </script>
