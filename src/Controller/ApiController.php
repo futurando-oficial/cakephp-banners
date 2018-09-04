@@ -19,7 +19,7 @@ class ApiController extends AppController {
      */
     public function index() {
         $this->loadModel('Banners');
-        $bannersdata = $this->Banners->find()->where(['status' => $this->Banners::STATUS_ATIVO])->order(['Banners__order' => 'ASC']);
+        $bannersdata = $this->Banners->find()->where(['status' => $this->Banners::STATUS_ATIVO])->order(['Banners__sort' => 'ASC']);
         $banners = $this->paginate($bannersdata);
 
         $this->set(compact('banners'));
