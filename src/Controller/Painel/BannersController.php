@@ -3,6 +3,7 @@
 namespace Banners\Controller\Painel;
 
 use Banners\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Banners Controller
@@ -12,13 +13,17 @@ use Banners\Controller\AppController;
  */
 class BannersController extends AppController {
 
+    public function beforeFilter(Event $event) {
+        $this->Security->setConfig('unlockedActions', ['editSort']);
+    }
+
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
     public function index() {
-        $banners = $this->paginate($this->Banners);
+        $banners = $this->paginate($this->Banners,['sort'=>'sort','direction'=>'asc']);
 
         $this->set(compact('banners'));
     }
@@ -199,6 +204,22 @@ class BannersController extends AppController {
         }
 
         return false;
+    }
+
+    public function editSort($id = null) {
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $banner = $this->Banners->get($id);
+            $banner->sort = $this->request->getData('index');
+            if ($this->Banners->save($banner)) {
+                $return = true;
+                $this->set(compact('return'));
+                $this->set('_serialize', ['return']);
+            } else {
+                $return = false;
+                $this->set(compact('return'));
+                $this->set('_serialize', ['return']);
+            }
+        }
     }
 
 }
