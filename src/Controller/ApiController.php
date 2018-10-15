@@ -3,6 +3,7 @@
 namespace Banners\Controller;
 
 use Banners\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Api Controller
@@ -11,6 +12,11 @@ use Banners\Controller\AppController;
  * @method \Banners\Model\Entity\Api[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ApiController extends AppController {
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index']);
+    }
 
     /**
      * Index method
