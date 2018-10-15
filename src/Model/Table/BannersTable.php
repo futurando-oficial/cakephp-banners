@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Banners Model
  *
+ *
  * @method \Banners\Model\Entity\Banner get($primaryKey, $options = [])
  * @method \Banners\Model\Entity\Banner newEntity($data = null, array $options = [])
  * @method \Banners\Model\Entity\Banner[] newEntities(array $data, array $options = [])
@@ -89,6 +90,22 @@ class BannersTable extends Table {
                 ->integer('status')
                 ->requirePresence('status', 'create')
                 ->notEmpty('status');
+
+        $validator
+                ->scalar('type')
+                ->maxLength('type', 15)
+                ->requirePresence('type', 'create')
+                ->notEmpty('type');
+
+        $validator
+                ->scalar('title')
+                ->requirePresence('title', 'create')
+                ->notEmpty('title');
+
+        $validator
+                ->scalar('text')
+                ->requirePresence('text', 'create')
+                ->notEmpty('text');
 
         return $validator;
     }
